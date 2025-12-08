@@ -22,6 +22,35 @@ window#waybar {
     border-bottom: 3px solid #cdd6f4;
 }
 
+#workspaces {
+    background: transparent;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#workspaces button {
+    padding: 0 15px; /* Make them wider to look like pills */
+    margin-right: 5px;
+    background-color: #313244; /* Dark pill background */
+    color: #cdd6f4;
+    border-radius: 15px; /* Rounded pill shape */
+    transition: all 0.3s ease;
+}
+
+/* The Workspace you are currently looking at */
+#workspaces button.active {
+    background-color: #cba6f7; /* Purple Active */
+    color: #11111b; /* Dark text */
+    min-width: 40px; /* Expand slightly */
+    background-size: 400% 400%;
+}
+
+/* Workspaces that have apps but are not active */
+#workspaces button:hover {
+    background-color: #45475a;
+    box-shadow: inherit;
+}
+
 #clock, #battery, #cpu, #memory, #tray {
     padding: 0 10px;
     margin: 0 4px;
@@ -29,15 +58,75 @@ window#waybar {
 }
 
 #clock {
-    background-color: #64727D;
+    background-color: #313244; /* Dark Grey/Blue Background */
+    color: #cdd6f4; /* Text Color */
+    
+    /* The "Pill" Shape */
+    border-radius: 15px; 
+    padding: 0 15px;
+    
+    /* Spacing from other modules */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    
+    /* Optional: Bold text looks better in pills */
+    font-weight: bold;
 }
 
+/* --- Battery --- */
 #battery {
-    background-color: #90b1b1;
-    color: #000000;
+    background-color: #313244; /* Dark Grey */
+    color: #cdd6f4;
+    border-radius: 15px;
+    padding: 0 15px;
+    margin: 5px 5px;
 }
 
+/* Battery States */
 #battery.charging {
-    color: #ffffff;
-    background-color: #26A65B;
+    color: #a6e3a1; /* Green text when charging */
+}
+
+#battery.warning:not(.charging) {
+    background-color: #fab387; /* Orange background if low */
+    color: #11111b;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f38ba8; /* Red background if critical */
+    color: #11111b;     
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* --- Networking --- */
+#network {
+    background-color: #313244; /* Dark Grey */
+    color: #cdd6f4;            /* Light Text */
+    border-radius: 15px;       /* Pill Shape */
+    padding: 0 15px;           /* Breathing room */
+    margin: 5px 5px;           /* Spacing between pills */
+}
+
+#network.disconnected {
+    background-color: #f38ba8; /* Red if offline */
+    color: #11111b;
+}
+
+#pulseaudio {
+    color: #f9e2af; /* Yellow/Gold */
+    padding: 0 10px;
+}
+
+#pulseaudio.muted {
+    color: #f38ba8; /* Red when muted */
+}
+
+#backlight {
+    color: #fab387; /* Orange/Peach */
+    padding: 0 10px;
 }

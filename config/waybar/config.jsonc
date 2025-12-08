@@ -2,17 +2,53 @@
     "layer": "top",
     "position": "top",
     "height": 30,
-    "modules-left": ["sway/workspaces", "hyprland/workspaces"], 
+    "modules-left": ["hyprland/workspaces"], 
     "modules-center": ["clock"],
-    "modules-right": ["cpu", "memory", "battery", "tray"],
+    "modules-right": ["network", "cpu", "memory", "pulseaudio", "backlight", "battery", "tray"],
 
-    "sway/workspaces": {
+    "hyprland/workspaces": {
+        // "format": "{name}",
+        "format": "{icon} {windows}",
+        "format-window-separator": " ",
         "disable-scroll": true,
-        "all-outputs": true
+        "on-click": "activate",
+        "sort-by-number": true,
+        "window-rewrite-default": " ",
+        "window-rewrite": {
+            "title<.*nvim.*>": "",
+            "title<.*vim.*>": "",
+            "title<.*yazi.*>": "",
+            "class<firefox>": " ",
+            "class<brave-browser>": " ",
+            "class<thunderbird>": "",
+            "kitty": "",
+            "class<signal>": "",
+            "class<evince>": "",
+            "class<Papers>": "",
+            "class<writer>": "",
+            "class<mpv>": "",
+        },
     },
     "clock": {
-        "format": "{:%H:%M}  ",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "interval": 60,
+        "format": "  {:%H:%M}", // Icon + Time (e.g., 14:30)
+        "max-length": 25,
+        // The tooltip format determines what you see when you hover
+        // %A = Day Name, %d = Day Number, %B = Month Name
+        "tooltip-format": "  {:%A, %d %B %Y}" 
+    },
+    "cpu": {
+        "interval": 1,
+        "format": " {usage}%", // Icon: Microchip
+        "tooltip": true
+    },
+
+    "memory": {
+        "interval": 1,
+        "format": " {percentage}%", // Icon: RAM Stick
+        "format-alt": "  {used:0.1f}G", // Click to see GB used
+        "tooltip": true,
+        "tooltip-format": "{used:0.1f}GB / {total:0.1f}GB used"
     },
     "battery": {
         "states": {
@@ -21,5 +57,34 @@
         },
         "format": "{capacity}% {icon}",
         "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} 󰈀",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ipaddr}/{cidr}" // <--- This triggers on click!
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon} {volume}%",
+        "format-muted": "", // Icon: Muted Speaker
+        "format-icons": {
+            "default": ["", "", ""] // Icons: Volume Low, Mid, High
+        },
+        "on-click": "pamixer -t", // Mute on click
+        "on-scroll-up": "pamixer -i 5", // Increase 5%
+        "on-scroll-down": "pamixer -d 5", // Decrease 5%
+        "tooltip": false
+    },
+
+    "backlight": {
+        "device": "intel_backlight", // NOTE: You might need to change this (see below)
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""], // Moon phases/Brightness circle
+        "on-scroll-up": "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set 5%-",
+        "tooltip": false
     }
 }

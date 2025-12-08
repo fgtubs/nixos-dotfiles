@@ -53,6 +53,8 @@
     neovim
     yazi
     iamb
+    pamixer # soundcontrol
+    brightnessctl # brightness control
   ];
 
 

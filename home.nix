@@ -43,6 +43,7 @@ in
 
 	home.packages = with pkgs; [
 		bat
+        adwaita-icon-theme
 		### NEEDED FOR NEOVIM SETUP ###
 		ripgrep      # For Telescope
 		fd           # For Telescope
@@ -108,6 +109,15 @@ in
 		EDITOR = "nvim";
 	};
 
+    # 2. Force GTK to use this theme
+    gtk = {
+        enable = true;
+        iconTheme = {
+            name = "Adwaita";
+            package = pkgs.adwaita-icon-theme;
+        };
+    };
+
 	# here all dotfile need to be liked!
 	xdg.configFile."nvim".source = ./config/nvim;
 	xdg.configFile."hypr".source = ./config/hypr;
@@ -115,5 +125,4 @@ in
 	xdg.configFile."yazi/flavors/catppuccin-mocha.yazi".source = "${yazi-flavors}/catppuccin-mocha.yazi";
 	xdg.configFile."iamb".source = ./config/iamb;
 	xdg.configFile."waybar".source = ./config/waybar;
-	#home.file.".config/waybar".source = ./config/waybar;
 }
