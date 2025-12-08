@@ -56,6 +56,7 @@
     waybar
     git
     hyprpaper
+    hyprlock
     wofi
     neovim
     yazi
