@@ -1,0 +1,42 @@
+/* The main window container */
+window {
+    margin: 0px;
+    border: 2px solid #cba6f7; /* Purple Border */
+    background-color: #1e1e2e; /* Dark Background */
+    border-radius: 15px;       /* Round corners */
+}
+
+/* The Search Bar */
+#input {
+    margin: 5px;
+    border: none;
+    color: #cdd6f4;            /* Text Color */
+    background-color: #313244; /* Slightly lighter background */
+    border-radius: 15px;       /* Pill shape for input */
+}
+
+/* The list of results */
+#inner-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+}
+
+/* Individual entries */
+#entry {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+    border-radius: 15px; /* Round corners for selection */
+}
+
+/* The currently selected entry */
+#entry:selected {
+    background-color: #cba6f7; /* Purple Highlight */
+    color: #1e1e2e;            /* Dark Text on Purple */
+}
+
+/* Icons */
+#img {
+    margin-right: 10px;
+}

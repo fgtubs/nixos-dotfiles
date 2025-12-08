@@ -125,4 +125,5 @@ in
 	xdg.configFile."yazi/flavors/catppuccin-mocha.yazi".source = "${yazi-flavors}/catppuccin-mocha.yazi";
 	xdg.configFile."iamb".source = ./config/iamb;
 	xdg.configFile."waybar".source = ./config/waybar;
+	xdg.configFile."wofi".source = ./config/wofi;
 }

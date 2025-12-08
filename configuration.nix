@@ -39,6 +39,13 @@
 
   programs.firefox.enable = true;
 
+  # Automatically deletes all nixos-builds that are: not the last 5 builds or that done in the last 4 days
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 5";
+  };
+
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [

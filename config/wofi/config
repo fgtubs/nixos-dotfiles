@@ -1,0 +1,20 @@
+# General
+show=drun
+prompt=Apps
+normal_window=true
+layer=top
+term=kitty
+
+# Geometry
+width=600
+height=400
+location=center
+
+# Images
+allow_images=true
+image_size=24
+
+# Search
+insensitive=true
+allow_markup=true
+no_actions=true
