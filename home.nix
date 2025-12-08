@@ -114,5 +114,6 @@ in
 	xdg.configFile."kitty".source = ./config/kitty;
 	xdg.configFile."yazi/flavors/catppuccin-mocha.yazi".source = "${yazi-flavors}/catppuccin-mocha.yazi";
 	xdg.configFile."iamb".source = ./config/iamb;
+	xdg.configFile."waybar".source = ./config/waybar;
 	#home.file.".config/waybar".source = ./config/waybar;
 }

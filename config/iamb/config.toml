@@ -2,7 +2,9 @@
 user_id = "@fin_gentzen:matrix.org"
 
 [settings]
-image_preview = {}
+
+[settings.image_preview]
+protocol.type = "kitty"
 
 [settings.notifications]
 enabled = true
