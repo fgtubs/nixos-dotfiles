@@ -1,0 +1,81 @@
+/* Main Window Configuration */
+.control-center {
+  background: #1e1e2e;
+  border: 2px solid #cba6f7; /* Purple Border */
+  border-radius: 15px;
+  margin: 20px;
+  padding: 10px;
+}
+
+/* Notification Rows */
+.notification-row {
+  outline: none;
+  margin: 10px;
+}
+
+.notification {
+  background: #313244;
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid #45475a;
+}
+
+/* Header Title */
+.widget-title {
+  color: #cba6f7;
+  background: #1e1e2e;
+  padding: 10px;
+  margin: 10px;
+  font-size: 1.5rem;
+  border-radius: 15px;
+}
+
+/* Clear All Button */
+.widget-title > button {
+  background: #313244;
+  color: #cdd6f4;
+  border: none;
+  border-radius: 15px;
+  padding: 8px 12px;
+}
+
+.widget-title > button:hover {
+  background: #cba6f7;
+  color: #1e1e2e;
+}
+
+/* Do Not Disturb Toggle */
+.widget-dnd {
+  background: #313244;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 15px;
+  color: #cdd6f4;
+}
+
+.widget-dnd > switch {
+  background: #45475a;
+  border-radius: 15px;
+}
+
+.widget-dnd > switch:checked {
+  background: #cba6f7;
+}
+
+/* Text Colors */
+.notification-content {
+  color: #cdd6f4;
+}
+
+.body-text {
+  color: #a6adc8;
+}
+
+.summary {
+  color: #cdd6f4;
+  font-weight: bold;
+}
+
+.time {
+  color: #a6adc8;
+}

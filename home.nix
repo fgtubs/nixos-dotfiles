@@ -63,6 +63,7 @@ in
         ### END OF NEOVIM SETUP ###
 
         networkmanagerapplet
+        swaynotificationcenter
 	];
 
 	### NEOVIM SETUP ###
@@ -126,4 +127,5 @@ in
 	xdg.configFile."iamb".source = ./config/iamb;
 	xdg.configFile."waybar".source = ./config/waybar;
 	xdg.configFile."wofi".source = ./config/wofi;
+	xdg.configFile."swaync".source = ./config/swaync;
 }

@@ -31,7 +31,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.fin = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
@@ -44,6 +44,20 @@
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 5";
+  };
+
+  # allow unfree packages (for example for vagrant)
+  nixpkgs.config.allowUnfree = true;
+
+  # enable virtualisation programs
+  virtualisation.docker.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+    };
   };
 
   # List packages installed in system profile.
@@ -63,6 +77,10 @@
     iamb
     pamixer # soundcontrol
     brightnessctl # brightness control
+    libvirt # virtualisation
+    qemu_kvm # virtualisation
+    virt-manager # virtualisation
+    vagrant # virtualisation
   ];
 
 
