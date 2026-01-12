@@ -30,6 +30,7 @@
             "class<libreoffice-draw>": "",
             "class<evince>": "",
             "class<Papers>": "",
+            "class<zathura>": "",
             "class<writer>": "",
             "class<mpv>": "",
         },
