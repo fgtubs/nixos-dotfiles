@@ -1,10 +1,21 @@
 /* Main Window Configuration */
 .control-center {
   background: #1e1e2e;
-  border: 2px solid #cba6f7; /* Purple Border */
+  border: 2px solid #cba6f7;
   border-radius: 15px;
-  margin: 20px;
+  
+  /* 3. Remove the generic 'margin: 20px' so JSON margins take over */
+  margin: 0px; 
   padding: 10px;
+
+  /* 4. Force Height Limit (3/4 of screen = 75vh) */
+  max-height: 75vh; 
+  
+  /* 5. Enable Scrolling if content is too long */
+  overflow-y: auto; 
+  
+  /* Optional: Ensure the min-width matches your JSON config */
+  min-width: 280px; 
 }
 
 /* Notification Rows */
@@ -32,6 +43,8 @@
 
 /* Clear All Button */
 .widget-title > button {
+  font-size: 12px;
+  padding: 6px 10px; 
   background: #313244;
   color: #cdd6f4;
   border: none;

@@ -15,6 +15,9 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
+  # Temporarly allow traffic on port 8000
+  networking.firewall.allowedTCPPorts = [ 8000 ];
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -31,7 +34,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.fin = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "dialout" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
@@ -75,6 +78,8 @@
     neovim
     yazi
     iamb
+    element-desktop
+    libreoffice
     pamixer # soundcontrol
     brightnessctl # brightness control
     libvirt # virtualisation

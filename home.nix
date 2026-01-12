@@ -36,6 +36,29 @@ in
 			flavors = {
 				use = "catppuchin-mocha";
 			};
+            opener = {
+                pdf = [
+                    { run = "zathura \"$@\" & ya emit quit"; orphan = true; }
+                ];
+                edit = [
+                    { run = "nvim \"$@\""; block = true; }
+                ];
+                impress = [
+                    { run = "libreoffice --impress \"$@\" & ya emit quit"; orphan = true; }
+                ];
+            };
+            open = {
+                rules = [
+                    # Special rule for PDFs
+                    { name = "*.pdf"; use = "pdf"; }
+                    # Special rule for Presentations in .odp or .ppp format
+                    { name = "*.odp";  use = "impress"; }
+                    { name = "*.ppt";  use = "impress"; }
+                    { name = "*.pptx"; use = "impress"; }
+                    # Fallback for text (and other files)
+                    {mine = "text/*"; use = "edit"; }
+                ];
+            };
 		};
 	};
 	# this is used to create a simlink. Nix saves this after the fetchFromGitHub under some weird folder, but with this you copy it to the normal place where you can look for it.
@@ -44,6 +67,7 @@ in
 	home.packages = with pkgs; [
 		bat
         adwaita-icon-theme
+        zathura
 		### NEEDED FOR NEOVIM SETUP ###
 		ripgrep      # For Telescope
 		fd           # For Telescope
