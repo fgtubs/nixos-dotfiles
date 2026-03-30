@@ -11,6 +11,14 @@ in
 	home.username = "fin";
 	home.homeDirectory = "/home/fin";
 	home.stateVersion = "25.05";
+
+    wayland.windowManager.hyprland = {
+        enable = true;
+
+        # IMPORTANT: Disable this to avoid conflicts with UWSM
+        systemd.enable = false; 
+    };
+
 	programs.bash = {
 		enable = true;
 		shellAliases = {
@@ -18,9 +26,10 @@ in
 			jana = "echo ich liebe dich";
 			vim = "nvim";
 		};
+        # 				exec Hyprland
 		profileExtra = ''
 			if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-				exec hyprland
+                exec start-hyprland
 			fi
 		'';
 		initExtra = ''
@@ -30,6 +39,7 @@ in
 
 	programs.yazi = {
 		enable = true;
+        shellWrapperName = "y";
 
 		# enable the specific flavor
 		settings = {
@@ -115,15 +125,21 @@ in
 			luasnip
 			cmp_luasnip
 
-			(nvim-treesitter.withPlugins (p: [
-				p.tree-sitter-nix
-				p.tree-sitter-lua
-				p.tree-sitter-python
-				p.tree-sitter-json
-				p.tree-sitter-bash
-				p.tree-sitter-vim
-				p.tree-sitter-cpp
-			]))
+            {
+                plugin = nvim-treesitter.withAllGrammars;
+                type = "lua";
+                config = ''
+                    require('nvim-treesitter.configs').setup {
+                        highlight = { enable = true },
+                        indent = { enable = true },
+
+                        -- Disable all installation commands because Nix handles it
+                        ensure_installed = {}, 
+                        auto_install = false, 
+                        sync_install = false, 
+                    }
+                '';
+            }
 		];
 	};
 

@@ -86,6 +86,8 @@
     qemu_kvm # virtualisation
     virt-manager # virtualisation
     vagrant # virtualisation
+    openconnect
+    opencode
   ];
 
 
