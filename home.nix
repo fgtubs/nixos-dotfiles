@@ -1,11 +1,11 @@
 { config, pkgs, ... }:
 let
-	yazi-flavors = pkgs.fetchFromGitHub {
-		owner = "yazi-rs";
-		repo = "flavors";
-		rev = "master";
-		sha256 = "sha256-bynoDEuRLyVqTOty8Ul2vxy8YKaKHcWHAhKvYlwkKo4=";
-	};
+    yazi-flavors = pkgs.fetchFromGitHub {
+        owner = "yazi-rs";
+        repo = "flavors";
+        rev = "master";
+        sha256 = "sha256-bynoDEuRLyVqTOty8Ul2vxy8YKaKHcWHAhKvYlwkKo4=";
+    };
 in
 {
 	home.username = "fin";
@@ -37,42 +37,13 @@ in
 		'';
 	};
 
-	programs.yazi = {
-		enable = true;
-        shellWrapperName = "y";
-
-		# enable the specific flavor
-		settings = {
-			flavors = {
-				use = "catppuchin-mocha";
-			};
-            opener = {
-                pdf = [
-                    { run = "zathura \"$@\" & ya emit quit"; orphan = true; }
-                ];
-                edit = [
-                    { run = "nvim \"$@\""; block = true; }
-                ];
-                impress = [
-                    { run = "libreoffice --impress \"$@\" & ya emit quit"; orphan = true; }
-                ];
-            };
-            open = {
-                rules = [
-                    # Special rule for PDFs
-                    { name = "*.pdf"; use = "pdf"; }
-                    # Special rule for Presentations in .odp or .ppp format
-                    { name = "*.odp";  use = "impress"; }
-                    { name = "*.ppt";  use = "impress"; }
-                    { name = "*.pptx"; use = "impress"; }
-                    # Fallback for text (and other files)
-                    {mine = "text/*"; use = "edit"; }
-                ];
-            };
-		};
-	};
 	# this is used to create a simlink. Nix saves this after the fetchFromGitHub under some weird folder, but with this you copy it to the normal place where you can look for it.
 
+    programs.yazi = {
+        enable = true;
+        shellWrapperName = "y";
+        # We leave settings out! Yazi will now read from your ./config/yazi folder.
+    };
 
 	home.packages = with pkgs; [
 		bat
@@ -163,9 +134,19 @@ in
 	xdg.configFile."nvim".source = ./config/nvim;
 	xdg.configFile."hypr".source = ./config/hypr;
 	xdg.configFile."kitty".source = ./config/kitty;
-	xdg.configFile."yazi/flavors/catppuccin-mocha.yazi".source = "${yazi-flavors}/catppuccin-mocha.yazi";
 	xdg.configFile."iamb".source = ./config/iamb;
 	xdg.configFile."waybar".source = ./config/waybar;
 	xdg.configFile."wofi".source = ./config/wofi;
 	xdg.configFile."swaync".source = ./config/swaync;
+
+
+    # YAZI MAPPING
+    # 1. Map your local folder recursively
+    xdg.configFile."yazi" = {
+        source = ./config/yazi;
+        recursive = true; 
+    };
+    
+    # 2. Inject the Catppuccin flavor into that mapped folder
+    xdg.configFile."yazi/flavors/catppuccin-mocha.yazi".source = "${yazi-flavors}/catppuccin-mocha.yazi";
 }
