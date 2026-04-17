@@ -139,7 +139,7 @@ format = '[ $symbol ($version) ]($style)'
 [python]
 symbol = ""
 style = "bg:#86BBD8"
-format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:bright-blue bg:dark-blue)]($style)'
+format = '[ $symbol( $version)(\(#$virtualenv\)) ]($style)'
 
 [nix_shell]
 symbol = " "
