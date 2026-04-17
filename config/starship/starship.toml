@@ -21,7 +21,7 @@ $python\
 $nix_shell\
 [](fg:#86BBD8 bg:#06969A)\
 $docker_context\
-[](fg:#06969A)\
+[ ](fg:#06969A)\
 """
 
 # Disable the blank line at the start of the prompt
@@ -62,6 +62,7 @@ CentOS = ""
 Debian = "󰣚"
 Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
+NixOS = ""
 
 [directory]
 style = "bg:#DA627D"
