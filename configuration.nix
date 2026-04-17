@@ -88,7 +88,6 @@
     vagrant # virtualisation
     openconnect
     opencode
-    starship # bash prompt alternation
   ];
 
 

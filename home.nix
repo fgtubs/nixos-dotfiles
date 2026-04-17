@@ -32,9 +32,9 @@ in
                 exec start-hyprland
 			fi
 		'';
-		initExtra = ''
-			export PS1='\[\e[38;5;208m\]\u\[\e[0m\] in \[\e[38;5;53m\]\w\[\e[0m\] \[\e[38;5;123m\]\\$\[\e[0m\] '
-		'';
+#		initExtra = ''
+#			export PS1='\[\e[38;5;208m\]\u\[\e[0m\] in \[\e[38;5;53m\]\w\[\e[0m\] \[\e[38;5;123m\]\\$\[\e[0m\] '
+#		'';
 	};
 
 	# this is used to create a simlink. Nix saves this after the fetchFromGitHub under some weird folder, but with this you copy it to the normal place where you can look for it.
@@ -43,6 +43,9 @@ in
         enable = true;
         shellWrapperName = "y";
         # We leave settings out! Yazi will now read from your ./config/yazi folder.
+    };
+    programs.starship = {
+        enable = true;
     };
 
 	home.packages = with pkgs; [
@@ -138,7 +141,7 @@ in
 	xdg.configFile."waybar".source = ./config/waybar;
 	xdg.configFile."wofi".source = ./config/wofi;
 	xdg.configFile."swaync".source = ./config/swaync;
-	xdg.configFile."starship".source = ./config/starship;
+    xdg.configFile."starship.toml".source = ./config/starship/starship.toml;
 
 
     # YAZI MAPPING
