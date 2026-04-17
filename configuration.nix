@@ -77,7 +77,7 @@
     wofi
     neovim
     yazi
-    iamb
+    fluffychat
     element-desktop
     libreoffice
     pamixer # soundcontrol
@@ -88,6 +88,7 @@
     vagrant # virtualisation
     openconnect
     opencode
+    starship # bash prompt alternation
   ];
 
 

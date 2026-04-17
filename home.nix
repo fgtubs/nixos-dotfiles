@@ -138,6 +138,7 @@ in
 	xdg.configFile."waybar".source = ./config/waybar;
 	xdg.configFile."wofi".source = ./config/wofi;
 	xdg.configFile."swaync".source = ./config/swaync;
+	xdg.configFile."starship".source = ./config/starship;
 
 
     # YAZI MAPPING
