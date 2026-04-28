@@ -72,6 +72,7 @@ in
 
         networkmanagerapplet
         swaynotificationcenter
+        brave
 	];
 
 	### NEOVIM SETUP ###

@@ -88,8 +88,34 @@
     vagrant # virtualisation
     openconnect
     opencode
-  ];
+    rpi-imager
+    polkit_gnome # to be able to start some desktop apps
+    xhost
 
+
+    ###################
+    # Costum Commands #
+    ###################
+
+    # to start the policy kit agent (needed for some desktop apps that need root access), called when system starts
+    (pkgs.writeShellScriptBin "start-polkit-agent" ''
+      exec ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+    '')
+    # to start the RPi Imager using "flash-pi"
+    (pkgs.writeShellScriptBin "flash-pi" ''
+      # 1. Grant root GUI access
+      ${pkgs.xorg.xhost}/bin/xhost +SI:localuser:root
+      
+      # 2. Trap ensures access is revoked the moment this script exits
+      trap "${pkgs.xorg.xhost}/bin/xhost -SI:localuser:root" EXIT
+      
+      # 3. Launch the app as root while preserving Wayland display variables
+      sudo -E ${pkgs.rpi-imager}/bin/rpi-imager
+    '')
+  ];
+  
+
+  security.polkit.enable = true;
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
