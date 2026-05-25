@@ -90,6 +90,7 @@ in
 			nvim-tree-lua
 			nvim-web-devicons
             catppuccin-nvim
+            snacks-nvim
 
 			# LSP and autoconfiguration
 			nvim-lspconfig
@@ -133,6 +134,22 @@ in
             package = pkgs.adwaita-icon-theme;
         };
     };
+
+    xdg.mimeApps = {
+        enable = true;
+    
+        defaultApplications = {
+          # --- Default Browser ---
+          "text/html" = "firefox.desktop";
+          "x-scheme-handler/http" = "firefox.desktop";
+          "x-scheme-handler/https" = "firefox.desktop";
+          "x-scheme-handler/about" = "firefox.desktop";
+          "x-scheme-handler/unknown" = "firefox.desktop";
+
+          # --- Default PDF Reader ---
+          "application/pdf" = "zathura.desktop"; 
+        };
+      };
 
 	# here all dotfile need to be liked!
 	xdg.configFile."nvim".source = ./config/nvim;

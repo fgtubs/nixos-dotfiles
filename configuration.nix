@@ -104,10 +104,10 @@
     # to start the RPi Imager using "flash-pi"
     (pkgs.writeShellScriptBin "flash-pi" ''
       # 1. Grant root GUI access
-      ${pkgs.xorg.xhost}/bin/xhost +SI:localuser:root
+      ${pkgs.xhost}/bin/xhost +SI:localuser:root
       
       # 2. Trap ensures access is revoked the moment this script exits
-      trap "${pkgs.xorg.xhost}/bin/xhost -SI:localuser:root" EXIT
+      trap "${pkgs.xhost}/bin/xhost -SI:localuser:root" EXIT
       
       # 3. Launch the app as root while preserving Wayland display variables
       sudo -E ${pkgs.rpi-imager}/bin/rpi-imager
