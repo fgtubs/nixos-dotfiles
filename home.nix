@@ -14,6 +14,7 @@ in
 
     wayland.windowManager.hyprland = {
         enable = true;
+        configType = "hyprlang"; # Silences the warning, keeps your config working
 
         # IMPORTANT: Disable this to avoid conflicts with UWSM
         systemd.enable = false; 
@@ -78,6 +79,8 @@ in
 	### NEOVIM SETUP ###
 	programs.neovim = {
 		enable = true;
+        withRuby = false;    # Silences the warning, saves space
+        withPython3 = false; # Silences the warning, saves space
 
 		viAlias = true;
 		vimAlias = true;
