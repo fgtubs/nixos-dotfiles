@@ -15,6 +15,7 @@
         "sort-by-number": true,
         "window-rewrite-default": " ",
         "window-rewrite": {
+            "title<.*OpenCode.*>": "󱚣",
             "title<.*nvim.*>": "",
             "title<.*vim.*>": "",
             "title<.*yazi.*>": "",

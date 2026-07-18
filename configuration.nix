@@ -28,6 +28,8 @@
     xwayland.enable = true;
   };
 
+  programs.niri.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
@@ -92,7 +94,6 @@
     rpi-imager
     polkit_gnome # to be able to start some desktop apps
     xhost
-    godot_4
     grim # screenshot: grep img
     slurp # screenshot: select region
     wl-clipboard # screenshot: copy to clipboard

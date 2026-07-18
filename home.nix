@@ -4,7 +4,7 @@ let
         owner = "yazi-rs";
         repo = "flavors";
         rev = "master";
-        sha256 = "sha256-bynoDEuRLyVqTOty8Ul2vxy8YKaKHcWHAhKvYlwkKo4=";
+        sha256 = "sha256-erZI0H5TxqFu2P917juL5PIB3LC0oJGKPcB1VibJDqo=";
     };
 in
 {
@@ -28,11 +28,11 @@ in
 			vim = "nvim";
 		};
         # 				exec Hyprland
-		profileExtra = ''
-			if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-                exec start-hyprland
-			fi
-		'';
+		#profileExtra = ''
+		#	if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
+        #       exec start-hyprland
+		#   fi
+		#'';
 #		initExtra = ''
 #			export PS1='\[\e[38;5;208m\]\u\[\e[0m\] in \[\e[38;5;53m\]\w\[\e[0m\] \[\e[38;5;123m\]\\$\[\e[0m\] '
 #		'';
@@ -53,6 +53,20 @@ in
 		bat
         adwaita-icon-theme
         zathura
+        swaybg             # Wallpaper utility for Niri
+        xwayland-satellite # Required for X11 apps in Niri
+
+        # --- Custom Godot 4.6 Wayland Wrapper ---
+        (symlinkJoin {
+            name = "godot-4.6-wayland";
+            paths = [ godotPackages_4_6.godot ]; 
+            nativeBuildInputs = [ makeWrapper ];
+            postBuild = ''
+                wrapProgram $out/bin/godot4 \
+                    --add-flags "--display-driver wayland"
+            '';
+        })
+
 		### NEEDED FOR NEOVIM SETUP ###
 		ripgrep      # For Telescope
 		fd           # For Telescope
@@ -163,6 +177,7 @@ in
 	xdg.configFile."wofi".source = ./config/wofi;
 	xdg.configFile."swaync".source = ./config/swaync;
     xdg.configFile."starship.toml".source = ./config/starship/starship.toml;
+    xdg.configFile."niri".source = ./config/niri;
 
 
     # YAZI MAPPING

@@ -1,0 +1,53 @@
+// ./config/niri/config.kdl
+
+// 1. Autostart your ecosystem tools
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "waybar"
+spawn-at-startup "swaync"
+
+// Adjust this path to wherever your flake is located on your actual file system
+spawn-at-startup "swaybg" "-m" "fill" "-i" "/home/fin/your-flake-dir/wallpapers/wallpaper_autumn.jpg"
+
+// 2. Standard settings
+input {
+    keyboard {
+        xkb {
+            // Set your layout here, e.g., "de" or "us"
+            layout "us" 
+        }
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+}
+
+layout {
+    gaps 16
+    struts {
+        // Tells Niri to leave room for Waybar at the top
+        top 32
+    }
+}
+
+// 3. Tailored Keybindings
+binds {
+    // Launchers
+    Mod+Return { spawn "kitty"; }
+    Mod+D { spawn "wofi" "--show" "drun"; }
+    Mod+Q { close-window; }
+
+    // Navigation
+    Mod+Left  { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Up    { focus-window-up; }
+    Mod+Down  { focus-window-down; }
+
+    // Workspaces
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+}
