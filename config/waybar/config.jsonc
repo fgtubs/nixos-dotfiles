@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "top",
     "height": 30,
-    "modules-left": ["hyprland/workspaces"], 
+    "modules-left": ["hyprland/workspaces", "niri/workspaces"],
     "modules-center": ["clock"],
     "modules-right": ["network", "cpu", "memory", "pulseaudio", "backlight", "battery", "tray"],
 
@@ -93,5 +93,17 @@
         "on-scroll-up": "brightnessctl set +5%",
         "on-scroll-down": "brightnessctl set 5%-",
         "tooltip": false
+    },
+    // ===================================
+    // Niri Workspaces
+    // ===================================
+    "niri/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            // The active workspace gets a filled circle/target
+            "active": "",
+            // Unfocused workspaces with open windows get a hollow circle
+            "default": ""
+        }
     }
 }
