@@ -1,10 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  # imports = [ ./hardware-configuration.nix ];  # this is handled by the flake.nix file, so we don't need to import it here.
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -100,6 +97,9 @@
     grim # screenshot: grep img
     slurp # screenshot: select region
     wl-clipboard # screenshot: copy to clipboard
+    brave
+    bazecor # keyboard configuration tool
+    wl-clipboard
 
 
 

@@ -141,6 +141,7 @@ in
 	# set the default text editor to neovim
 	home.sessionVariables = {
 		EDITOR = "nvim";
+        XCURSOR_SIZE = "24";
 	};
 
     # 2. Force GTK to use this theme
@@ -189,4 +190,30 @@ in
     
     # 2. Inject the Catppuccin flavor into that mapped folder
     xdg.configFile."yazi/flavors/catppuccin-mocha.yazi".source = "${yazi-flavors}/catppuccin-mocha.yazi";
+
+
+    # Cursor configuration
+    home.pointerCursor = {
+      name = "BreezeX-Dark"; # Change to BreezeX-Light or BreezeX-Black if you prefer
+      size = 24;             # Adjust to your preferred size
+      gtk.enable = true;
+      x11.enable = true;
+  
+      package = pkgs.stdenv.mkDerivation {
+        pname = "breezex-cursor";
+        version = "2.0.1";
+
+        src = pkgs.fetchzip {
+          url = "https://github.com/ful1e5/BreezeX_Cursor/releases/download/v2.0.1/BreezeX-Dark.tar.xz";
+          # We use a fake hash here on purpose! 
+          hash = "sha256-HqjO/ogAd/dsrO5WHIilUQaq1CbiU48lEaoefcUmmBM="; 
+          
+        };
+
+        installPhase = ''
+          mkdir -p $out/share/icons/BreezeX-Dark
+          cp -R . $out/share/icons/BreezeX-Dark/
+        '';
+      };
+    };
 }
