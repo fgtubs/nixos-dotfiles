@@ -7,7 +7,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "hyprland-btw"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -32,6 +31,27 @@
 
   # Enable Thunderbird
   programs.thunderbird.enable = true;
+
+  # Enable Bluetooth support
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
+  # Enable the Blueman service
+  services.blueman.enable = true;
+
+  # Enable CUPS to print documents
+  services.printing.enable = true;
+
+  # Add specific printer
+  hardware.printers = {
+    ensurePrinters = [
+      {
+        name = "KYOCERA-IPP";
+        deviceUri = "ipp://134.169.115.2:443/ipp";
+        model = "everywhere";
+      }
+    ];
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.fin = {
@@ -99,7 +119,8 @@
     wl-clipboard # screenshot: copy to clipboard
     brave
     bazecor # keyboard configuration tool
-    wl-clipboard
+    wl-clipboard # copy to clipboard for neovim
+    arduino-ide
 
 
 
